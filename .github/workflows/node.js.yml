@@ -62,9 +62,9 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd cs-test
-          docker-compose down
-          docker rmi -f emhavis/web3:latest
-          docker-compose up -d
-          ./update-sw.sh
+          docker-compose  down >> ci_cd_log.txt
+          docker rmi -f emhavis/web3:latest >> ci_cd_log.txt
+          docker-compose up -d >> ci_cd_log.txt
+          ./update-sw.sh >> ci_cd_log.txt
 
 
