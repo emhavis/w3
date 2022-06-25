@@ -9,45 +9,43 @@ on:
     branches: [ "main" ]
 
 jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     strategy:
-#       matrix:
-#         node-version: [16.x]
-#         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-#     steps:
-#     - uses: actions/checkout@v3
-#     - name: Use Node.js ${{ matrix.node-version }}
-#       uses: actions/setup-node@v3
-#       with:
-#         node-version: ${{ matrix.node-version }}
-#         cache: 'npm'
-# #    - run: npm ci
-#     - run: npm install --force
-#     - run: npm run build --if-present
-# #    - run: npm test
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm install --force
+    - run: npm run build --if-present
 
-#   build-container:
-#     name: Build Container
-#     runs-on: ubuntu-latest
-#     needs: build
-#     steps:
-#       - name: Checkout Code
-#         uses: actions/checkout@v3
+  build-container:
+    name: Build Container
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-#       - name: Login to Docker Hub
-#         uses: docker/login-action@v1
-#         with:
-#           username: ${{ secrets.DOCKER_HUB_USERNAME }}
-#           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-#       - name: Build and push to Docker Hub
-#         uses: docker/build-push-action@v2
-#         with:
-#           context: .
-#           push: true
-#           tags: emhavis/web3:latest, emhavis/web3:${{ github.run_number }}
+      - name: Build and push to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: emhavis/web3:latest, emhavis/web3:${{ github.run_number }}
 
   deploy:
     name: deploy on PKC-DEV
@@ -60,7 +58,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-#        shell: 'script -q -e -c "bash {0}"'
         envs: COMPOSE_INTERACTIVE_NO_CLI=1
         script: /home/ubuntu/cs-test/up-deploy.sh 2>&1
 
