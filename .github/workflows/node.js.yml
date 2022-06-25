@@ -60,9 +60,9 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        shell: 'script -q -e -c "bash {0}"'
+#        shell: 'script -q -e -c "bash {0}"'
         envs: COMPOSE_INTERACTIVE_NO_CLI=1
-        run: |
+        script: |
           cd cs-test
           docker-compose -T  down >> ci_cd_log.txt
           docker rmi -f emhavis/web3:latest >> ci_cd_log.txt
