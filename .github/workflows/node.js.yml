@@ -62,11 +62,6 @@ jobs:
         port: ${{ secrets.PORT }}
 #        shell: 'script -q -e -c "bash {0}"'
         envs: COMPOSE_INTERACTIVE_NO_CLI=1
-        script: |
-          cd cs-test
-          docker-compose down >> ci_cd_log.txt
-          docker rmi -f emhavis/web3:latest >> ci_cd_log.txt
-          docker-compose up -d >> ci_cd_log.txt
-          ./update-sw.sh >> ci_cd_log.txt
+        script: ./up-deploy.sh 2>&1
 
 
