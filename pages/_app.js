@@ -10,7 +10,7 @@ function EkatalogMarketplace({Component, pageProps}) {
         <div className='flex mt-4 justify-center'>
           <Link href='/'>
             <a className='mr-4'>
-              Auditor-Updated
+              Auditor-Updated-Sunday
             </a>
           </Link>
           <Link href='/mint-item'>
