@@ -46,7 +46,7 @@ function EkatalogMarketplace({
           href: "/",
           children: /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx("a", {
             className: "mr-4",
-            children: "Auditor-Updated-Sunday"
+            children: "Auditor"
           })
         }), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx(next_link__WEBPACK_IMPORTED_MODULE_0__.default, {
           href: "/mint-item",
